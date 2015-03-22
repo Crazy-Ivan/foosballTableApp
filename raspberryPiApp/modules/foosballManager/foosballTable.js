@@ -34,36 +34,38 @@ module.exports = function setup(options, imports, register) {
             });
         });
 
-        serialport.on('data', function(data) {
-            var tmpTeam;
-
-            data = data.trim();
-
-            switch(data) {
-
-                case "reset":
-                    resetScore();
-                    broadcastMessage('scoreChanged', gameState);
-                    break;
-
-                case "team1":
-                    tmpTeam = ((gameState.teamOne.bigPoints + gameState.teamTwo.bigPoints) % 2 === 0 ) ? gameState.teamOne : gameState.teamTwo;
-                    addPoint(tmpTeam);
-                    break;
-
-                case "team2":
-                    tmpTeam = ((gameState.teamOne.bigPoints + gameState.teamTwo.bigPoints) % 2 === 0 ) ? gameState.teamTwo : gameState.teamOne;
-                    addPoint(tmpTeam);
-                    break;
-            }
+        serialport.on('data', function(action) {
+            action = data.trim();
+            performTableAction(action);
 
             if(!isOccupied) {
-                isOccupied = true;
-                broadcastMessage('tableOccupied');
+                occupyTable();
             }
 
             prolongPlaying();
         });
+    }
+
+    function performTableAction(action) {
+        var tmpTeam;
+
+        switch(action) {
+
+            case "reset":
+                resetScore();
+                broadcastMessage('scoreChanged', gameState);
+                break;
+
+            case "team1":
+                tmpTeam = ((gameState.teamOne.bigPoints + gameState.teamTwo.bigPoints) % 2 === 0 ) ? gameState.teamOne : gameState.teamTwo;
+                addPoint(tmpTeam);
+                break;
+
+            case "team2":
+                tmpTeam = ((gameState.teamOne.bigPoints + gameState.teamTwo.bigPoints) % 2 === 0 ) ? gameState.teamTwo : gameState.teamOne;
+                addPoint(tmpTeam);
+                break;
+        }
     }
 
     function addPoint(team) {
@@ -98,6 +100,11 @@ module.exports = function setup(options, imports, register) {
         gameState.teamOne.smallPoints = 0;
         gameState.teamTwo.smallPoints = 0;
         broadcastMessage('newSetStarted');
+    }
+
+    function occupyTable() {
+        isOccupied = true;
+        broadcastMessage('tableOccupied');
     }
 
     function exemptTable() {
