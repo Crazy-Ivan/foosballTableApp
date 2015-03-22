@@ -1,9 +1,13 @@
 # foosballTableApp
 
 ## arduino software
-TODO
+
+[jump to arduino README.md](/arduinoApp/README.md)
+
 ## raspberryPi software
-TODO
+
+[jump to raspberryPi README.md](/raspberryPiApp/README.md)
+
 ## hardware
 
 A simplified schema of Arduino and the sensor circuit is shown below.
