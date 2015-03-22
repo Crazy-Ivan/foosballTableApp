@@ -1,0 +1,10 @@
+{
+    "name": "serialport",
+    "version": "0.0.1",
+    "main": "serialport.js",
+    "private": true,
+    "plugin": {
+        "provides": ["serialport"],
+        "consumes": ["logger"]
+    }
+}

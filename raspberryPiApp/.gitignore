@@ -1,0 +1,7 @@
+#ignore catalogs
+.idea/
+config/production.json
+config/runtime.json
+node_modules/
+logs/*.txt
+!.gitignore

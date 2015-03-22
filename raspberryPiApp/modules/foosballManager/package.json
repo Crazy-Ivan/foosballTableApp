@@ -1,0 +1,9 @@
+{
+    "name": "foosballManager",
+    "version": "0.0.1",
+    "main": "index.js",
+    "private": true,
+    "plugin": {
+        "consumes": ["serialport", "websocket"]
+    }
+}
