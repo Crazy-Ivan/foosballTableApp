@@ -1,5 +1,35 @@
-## How to install
-TODO
+## Requirements
+
+- [node.js]
+
+## Install
+
+```bash
+$ [sudo] npm install
+```
+
+It will download all npm dependencies
+
+## Configuration
+
+Setup serial port if needed /config/default.json
+
+```json
+"services/serialport":{
+        "path":"/dev/ttyACM0",
+        "baudRate":9600,
+        "parser":"readline"
+    }
+```
+
+## Getting started
+
+#### run a server
+
+```bash
+$ npm start
+```
+
 
 Bugs and Features
 -----------------
