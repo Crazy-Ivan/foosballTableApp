@@ -35,7 +35,7 @@ module.exports = function setup(options, imports, register) {
         });
 
         serialport.on('data', function(action) {
-            action = data.trim();
+            action = action.trim();
             performTableAction(action);
 
             if(!isOccupied) {
